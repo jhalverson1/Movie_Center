@@ -29,13 +29,13 @@ $(document).ready(function(){
 
         // Clear div, then load div with new search results
         $('#movie_list_div').empty();
-        $('#movie_list_div').append("<ul id='newResultsList'></ul>");
+        $('#movie_list_div').append("<div class='list-group' id='newResultsList'></div>");
 
         for (i = 0; i < resultJSON.results.length; i++) {
-            $("#newResultsList").append("<li> Title: "
-                        + resultJSON.results[i].title + " , Year: "
+            $("#newResultsList").append("<a href='#' class='list-group-item list-group-item-action'>"
+                        + resultJSON.results[i].title + ", "
                         + resultJSON.results[i].release_date.substring(0, 4)
-                        + "</li>");
+                        + "</a>");
 
         }
     };
