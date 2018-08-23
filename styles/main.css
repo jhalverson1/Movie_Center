@@ -1,5 +1,15 @@
 /* index.html styles */
+#search_bar_form {
+  margin-top: 10%;
+}
 
+.list-group-item {
+  padding: 5px;
+}
+
+.poster_thumbnail {
+  padding: 0;
+}
 
 
 
@@ -25,6 +35,7 @@
 #movie_poster {
   width: 100%;
   height: auto;
+  padding: 0;
 }
 
 #other_movie_info {

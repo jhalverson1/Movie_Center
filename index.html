@@ -6,8 +6,6 @@
 
   <title>Movie Center Website</title>
 
-  <link rel="stylesheet" href="styles/main.css">
-
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -16,6 +14,9 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- My CSS -->
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
@@ -27,10 +28,12 @@
 
         <section id="fetch">
           <!-- Search Bar -->
-          <form name="fetch">
-            <input type="text" placeholder="Enter a movie title" id="movie_search_text" value="" />
-            <input type="button" value="Search" id="movie_search_btn"/>
-          </form>
+          <div class="input-group mb-3" id="search_bar_form">
+            <input type="text" class="form-control" placeholder="Search Movies" aria-label="Recipient's username" aria-describedby="basic-addon2" id="movie_search_text">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="movie_search_btn">Search</button>
+            </div>
+          </div>
 
           <!-- Search Results -->
           <div id="movie_list_div"></div>
