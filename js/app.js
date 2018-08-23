@@ -5,18 +5,14 @@ $(document).ready(function(){
     var tmdb = theMovieDb;
     var resultJSON = {};
 
-	$("#search").click(function(){
+  // When the user searches for a movie
+	 $("#search").click(function(){
 
         var film = $('#term').val();
         tmdb.search.getMovie({"query":film}, search_successCB, search_errorCB)
 
     });
 
-    $(document).on('click', '.details_segue', function( event ) {
-        //Do Code here
-
-        alert( $(this).attr('id') );
-     });
 
     // Currently not used.
     function display(description, poster_path) {
@@ -32,7 +28,10 @@ $(document).ready(function(){
         $('#movie_list_div').append("<div class='list-group' id='newResultsList'></div>");
 
         for (i = 0; i < resultJSON.results.length; i++) {
-            $("#newResultsList").append("<a href='#' class='list-group-item list-group-item-action'>"
+            console.log(resultJSON.results[i].id);
+            var current_id = resultJSON.results[i].id;
+            $("#newResultsList").append("<a href='movie_info.html' class='list-group-item list-group-item-action' id ='"
+                        + current_id + "' onClick='segue_click(this.id)'>"
                         + resultJSON.results[i].title + ", "
                         + resultJSON.results[i].release_date.substring(0, 4)
                         + "</a>");
@@ -51,10 +50,17 @@ $(document).ready(function(){
         console.log("Success callback");
     };
 
-    // Function is calle when the search is not successful
+    // Function is called when the search is not successful
     function search_errorCB(data) {
         console.log("Error callback: " + data);
     };
 
 
 });
+
+function segue_click(clicked_id) {
+
+    // save clicked movie id to local storage for later use
+    localStorage.movie_id=clicked_id;
+
+};
