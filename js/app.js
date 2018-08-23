@@ -1,24 +1,15 @@
 $(document).ready(function(){
 
     var api_key = config.TMDB_API;
-    var baseimg = "https://image.tmdb.org/t/p/w300";
+    var baseimg = "https://image.tmdb.org/t/p/original";
     var tmdb = theMovieDb;
     var resultJSON = {};
 
   // When the user searches for a movie
-	 $("#search").click(function(){
-
-        var film = $('#term').val();
+	 $("#movie_search_btn").click(function(){
+        var film = $('#movie_search_text').val();
         tmdb.search.getMovie({"query":film}, search_successCB, search_errorCB)
-
     });
-
-
-    // Currently not used.
-    function display(description, poster_path) {
-        $('#description').text(description);
-        document.getElementById("poster").src = baseimg + poster_path;
-    };
 
     // Generates a list of movies based on what is being searched for
     function generate_list(resultJSON) {
@@ -64,3 +55,10 @@ function segue_click(clicked_id) {
     localStorage.movie_id=clicked_id;
 
 };
+
+// Allows user to hit enter in text box to submit search
+// document.getElementById('movie_search_text').onkeypress=function(e){
+//     if(e.keyCode==13){
+//         document.getElementById('movie_search_btn').click();
+//     }
+// }

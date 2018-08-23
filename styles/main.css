@@ -1,3 +1,34 @@
-.test {
-    color: blue;
+/* index.html styles */
+
+
+
+
+
+
+/* movie_info.html styles */
+.behind-container {
+  background-color: grey;
+  padding: 10% 10%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.custom_container {
+  background-color: rgba(213,213,213,0.7);
+  border-radius: 5px;
+}
+
+#movie_runtime {
+  font-size: 12px
+}
+
+#movie_poster {
+  width: 100%;
+  height: auto;
+}
+
+#other_movie_info {
+  background-color: white;
+  border-radius: 4px;
+  opacity: .6;
 }

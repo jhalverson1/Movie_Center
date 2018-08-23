@@ -20,26 +20,25 @@
 
 <body>
 
-  <div class="container-fluid">
+  <div class="behind-container" id="movie_backdrop">
+    <div class="container-fluid custom_container">
 
-    <div class="row justify-content-center">
-      <div class="col-md-8 offset-md-2" id="movie_title">title</div>
-    </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <img class="rounded float-left" id="movie_poster" src="" alt="movie_poster">
+        </div>
+        <div class="col-lg-5">
+          <h1 id="movie_title"></h1>
+          <h4 id="movie_year"></h4>
+          <p id="movie_runtime"></p>
+          <div id="movie_overview"></div>
+        </div>
+        <div class="col-lg-4" id="other_movie_info">
 
-    <div class="row justify-content-center">
-      <div class="col-md-8 offset-md-2" id="movie_year">year</div>
-    </div>
-
-    <div class="row justify-content-center">
-      <div class="col-md-8 offset-md-2">
-        <img id="movie_poster" src="" alt="movie_poster">
+        </div>
       </div>
-    </div>
 
-    <div class="row justify-content-center">
-      <div class="col-md-8 offset-md-2" id="movie_overview">description</div>
     </div>
-
   </div>
 
   <script type='text/javascript' src='js/config.js'></script>
