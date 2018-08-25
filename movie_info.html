@@ -29,7 +29,25 @@
       <div class="row">
         <div class="col-lg-3" id="column_one">
           <img class="rounded float-left" id="movie_poster" src="" alt="movie_poster">
-          <button class="btn btn-outline-dark" type="button" name="Trailer" id="trailer_btn">Play Trailer</button>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-dark video-btn" data-toggle="modal" data-target="#trailer_modal" id="trailer_btn">Play Trailer</button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="trailer_modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <!-- 16:9 aspect ratio -->
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always">></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-lg-5" id="column_two">
           <h1 id="movie_title"></h1>

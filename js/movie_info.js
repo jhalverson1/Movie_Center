@@ -63,8 +63,8 @@ $(document).ready(function(){
     }
 
     function create_trailer_link(youtube_key) {
-        Movie_Details.youtube_url = "https://www.youtube.com/watch?v=" + youtube_key;
-        console.log(Movie_Details.youtube_url);
+        Movie_Details.youtube_url = "https://www.youtube.com/embed/" + youtube_key;
+        trailer_modal(Movie_Details.youtube_url);
     }
 
     // Display Movie Info
@@ -83,10 +83,34 @@ $(document).ready(function(){
         document.getElementById("movie_poster").src = complete_poster_url;
 
         // Movie Trailer
-        document.getElementById("trailer_btn").onclick = function() {window.open(Movie_Details.youtube_url, "_blank");};
+        //document.getElementById("trailer_btn").onclick = function() {window.open(Movie_Details.youtube_url, "_blank");};
 
         // Movie Overview
         $("#movie_overview").text(Movie_Details.overview);
     }
+
+      function trailer_modal(url) {
+        // Trailer Modal Popup
+
+        // Gets the video src from the data-src on each button
+        var $videoSrc = url
+        console.log($videoSrc);
+
+
+        // when the modal is opened autoplay it
+        $('#trailer_modal').on('shown.bs.modal', function (e) {
+
+        // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+        $("#video").attr('src',$videoSrc + "?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1" );
+        })
+
+
+        // stop playing the youtube video when I close the modal
+        $('#trailer_modal').on('hide.bs.modal', function (e) {
+            // a poor man's stop video
+            $("#video").attr('src',$videoSrc);
+        })
+      }
+
 
 });
