@@ -17,8 +17,8 @@
 
 /* movie_info.html styles */
 .behind-container {
-  background-color: grey;
-  padding: 10% 10%;
+  background-color: black;
+  padding: 30% 10% 0 10%;
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -28,6 +28,21 @@
   border-radius: 5px;
 }
 
+#column_one {
+  padding: 5px;
+}
+
+#column_two {
+  padding: 5px;
+}
+
+#column_three {
+  background-color: white;
+  border-radius: 4px;
+  opacity: .6;
+  padding: 5px;
+}
+
 #movie_runtime {
   font-size: 12px
 }
@@ -35,11 +50,5 @@
 #movie_poster {
   width: 100%;
   height: auto;
-  padding: 0;
-}
-
-#other_movie_info {
-  background-color: white;
-  border-radius: 4px;
-  opacity: .6;
+  padding-bottom: 5px;
 }

@@ -15,15 +15,15 @@ $(document).ready(function(){
       runtime : "0",
       poster_path: "poster path",
       backdrop_path: "backdrop path",
-      overview: "overview"
+      overview: "overview",
+      youtube_url: "youtube.com"
     };
 
 
 
-    // $("#movie_title").text(localStorage.movie_id);
-
-    var movie = tmdb.movies.getById({"id":movie_id }, id_search_successCB, id_search_errorCB)
-
+    // Create "movie object"
+    var movie = tmdb.movies.getById({"id":movie_id }, id_search_successCB, errorCB)
+    var trailer = tmdb.movies.getVideos({"id":movie_id}, trailer_successCB, errorCB)
 
     // Function is called when the movie is found successfully
     function id_search_successCB(data) {
@@ -36,8 +36,14 @@ $(document).ready(function(){
         // console.log(resultJSON);
     };
 
+    // Function is called when the trailer id is found successfully
+    function trailer_successCB(data) {
+       var results = JSON.parse(data);
+       create_trailer_link(results.results[0].key);
+    }
+
     // Function is called when the movie is not found successfully
-    function id_search_errorCB(data) {
+    function errorCB(data) {
         console.log("Error callback: " + data);
     };
 
@@ -56,6 +62,11 @@ $(document).ready(function(){
         load_page_details();
     }
 
+    function create_trailer_link(youtube_key) {
+        Movie_Details.youtube_url = "https://www.youtube.com/watch?v=" + youtube_key;
+        console.log(Movie_Details.youtube_url);
+    }
+
     // Display Movie Info
     function load_page_details() {
 
@@ -71,8 +82,11 @@ $(document).ready(function(){
         var complete_poster_url = baseimg + Movie_Details.poster_path;
         document.getElementById("movie_poster").src = complete_poster_url;
 
-        $("#movie_overview").text(Movie_Details.overview);
+        // Movie Trailer
+        document.getElementById("trailer_btn").onclick = function() {window.open(Movie_Details.youtube_url, "_blank");};
 
+        // Movie Overview
+        $("#movie_overview").text(Movie_Details.overview);
     }
 
 });
