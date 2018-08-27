@@ -16,7 +16,8 @@ $(document).ready(function(){
       poster_path: "poster path",
       backdrop_path: "backdrop path",
       overview: "overview",
-      youtube_url: "youtube.com"
+      youtube_url: "youtube.com",
+      imdb_id: "tt"
     };
 
 
@@ -57,6 +58,7 @@ $(document).ready(function(){
         Movie_Details.poster_path = resultJSON.poster_path;
         Movie_Details.backdrop_path = resultJSON.backdrop_path;
         Movie_Details.overview = resultJSON.overview;
+        Movie_Details.imdb_id = resultJSON.imdb_id;
 
         // Load movie details onto the page
         load_page_details();
@@ -87,9 +89,24 @@ $(document).ready(function(){
 
         // Movie Overview
         $("#movie_overview").text(Movie_Details.overview);
+
+        // IMDb Score from plugin. function taken from "https://www.imdb.com/plugins"
+        document.getElementById("link_to_imdb").href = "https://www.imdb.com/title/" + Movie_Details.imdb_id + "/?ref_=plg_rt_1";
+        document.getElementById("imdb_plugin").dataset.title = Movie_Details.imdb_id;
+        (function(d,s,id) {
+          var js,stags=d.getElementsByTagName(s)[0];
+            if(d.getElementById(id)) {
+              return;
+            }
+            js=d.createElement(s);
+            js.id=id;
+            js.src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js";
+
+            stags.parentNode.insertBefore(js,stags);
+          }) (document,"script","imdb-rating-api");
     }
 
-      function trailer_modal(url) {
+    function trailer_modal(url) {
         // Trailer Modal Popup
 
         // Gets the video src from the data-src on each button
@@ -110,7 +127,5 @@ $(document).ready(function(){
             // a poor man's stop video
             $("#video").attr('src',$videoSrc);
         })
-      }
-
-
+    }
 });
