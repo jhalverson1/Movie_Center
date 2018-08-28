@@ -26,8 +26,16 @@ $(document).ready(function(){
         $('#movie_list_div').append("<div class='list-group' id='newResultsList'></div>");
 
         for (i = 0; i < resultJSON.results.length; i++) {
-            console.log(resultJSON.results[i].id);
             var current_id = resultJSON.results[i].id;
+            // Check and see if movie has a poster poster available
+            var full_image_url;
+            if (resultJSON.results[i].poster_path) {
+              full_image_url = baseimg + resultJSON.results[i].poster_path;
+            } else {
+              full_image_url = "images/poster_unavailable.jpg";
+            }
+
+            // Create unordered list items
             $("#newResultsList").append(
                         // Clickable link using anchor element
                         "<a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='"
@@ -36,8 +44,8 @@ $(document).ready(function(){
                         + "<div class='row'>"
 
                         // Movie Poster
-                        + "<div class='col-sm-1 poster_thumbnail'>"
-                        + "<img class='rounded' id='movie_poster' src='" + baseimg + resultJSON.results[i].poster_path + "' alt='movie_poster'>"
+                        + "<div class='col-sm-1 home_li_pic'>"
+                        + "<img class='poster_thumbnail' src='" + full_image_url + "' alt='movie poster'>"
                         + "</div>"
 
                         // title and release year
@@ -52,9 +60,6 @@ $(document).ready(function(){
 
                         + "</div>"
                         + "</div>"
-                        // Title and Release Year
-                        // + resultJSON.results[i].title
-                        // + resultJSON.results[i].release_date.substring(0, 4)
                         + "</a>"
                       );
 

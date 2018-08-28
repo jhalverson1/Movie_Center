@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
     var api_key = config.TMDB_API;
-    var baseimg = "https://image.tmdb.org/t/p/original";
+    var baseimg_w185 = "https://image.tmdb.org/t/p/w185";
+    var baseimg_original = "https://image.tmdb.org/t/p/original";
     var tmdb = theMovieDb;
     var resultJSON = {};
 
@@ -11,6 +12,7 @@ $(document).ready(function(){
     // Movie Details
     var Movie_Details = {
       title : "title",
+      director : "name",
       year : "0000",
       runtime : "0",
       poster_path: "poster path",
@@ -20,11 +22,10 @@ $(document).ready(function(){
       imdb_id: "tt"
     };
 
-
-
     // Create "movie object"
     var movie = tmdb.movies.getById({"id":movie_id }, id_search_successCB, errorCB)
     var trailer = tmdb.movies.getVideos({"id":movie_id}, trailer_successCB, errorCB)
+    var credits = tmdb.movies.getCredits({"id":movie_id }, credits_successCB, errorCB)
 
     // Function is called when the movie is found successfully
     function id_search_successCB(data) {
@@ -33,14 +34,21 @@ $(document).ready(function(){
         resultJSON = JSON.parse(data);
 
         generate_details(resultJSON);
-        // console.log("Success callback");
-        // console.log(resultJSON);
     };
 
     // Function is called when the trailer id is found successfully
     function trailer_successCB(data) {
        var results = JSON.parse(data);
-       create_trailer_link(results.results[0].key);
+       if (results.results[0].key) {
+          create_trailer_link(results.results[0].key);
+       }
+    }
+
+    // Function is called when the credits are found successfully
+    function credits_successCB(data) {
+        var results = JSON.parse(data);
+
+        generate_credits(results);
     }
 
     // Function is called when the movie is not found successfully
@@ -64,6 +72,57 @@ $(document).ready(function(){
         load_page_details();
     }
 
+    function generate_credits(credits) {
+
+        // Find the director
+        credits.crew.forEach(function(member) {
+            if (member.job == "Director") {
+                Movie_Details.director = member.name;
+                // Edit HTML director div
+                $("#movie_director").append("<span><u><a class='text-white director_link' id='" + member.id + "' onClick='imdb_segue(this.id)'>" + Movie_Details.director + "</a></u></span>");
+                //.text("Directed by " + Movie_Details.director);
+            }
+        });
+
+        //  Generate List of Credits in Third Column
+
+        // Clear div, then load div with new search results
+        $('#cast_list_div').empty();
+        $('#cast_list_div').append("<div class='list-group' id='newCastList'><h3><u>Cast</u></h3></div>");
+        console.log(credits);
+        credits.cast.forEach(function(member) {
+            // Create img url
+            var cast_image_path = "images/poster_unavailable.jpg";
+            if (member.profile_path) {
+              cast_image_path = baseimg_w185 + member.profile_path;
+            }
+
+            //console.log(member);
+            $("#newCastList").append(
+                "<a class='imdb_li_btn' id ='" + member.id + "' onClick='imdb_segue(this.id)'>"
+                + "<div class='cast_member list-group-item'>"
+                + "<div class='container-fluid'>"
+                + "<div class='row' id='cast_row'>"
+
+                // Cast member image
+                + "<div class='column-sm-1'>"
+                + "<img class='rounded cast_member_image' src='" + cast_image_path + "' alt='cast member image'>"
+                + "</div>"
+
+                // Cast member name and character
+                + "<div class='column-sm-11 text-dark'>"
+                + "<p class='cast_member_name'>" + member.name + "</p>"
+                + "<p class='cast_member_character'>" + member.character + "</p>"
+                + "</div>"
+
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</a>"
+            );
+        });
+    }
+
     function create_trailer_link(youtube_key) {
         Movie_Details.youtube_url = "https://www.youtube.com/embed/" + youtube_key;
         trailer_modal(Movie_Details.youtube_url);
@@ -73,16 +132,22 @@ $(document).ready(function(){
     function load_page_details() {
 
         // Movie Backdrop
-        var complete_backdrop_url = baseimg + Movie_Details.backdrop_path;
+        var complete_backdrop_url = baseimg_original + Movie_Details.backdrop_path;
         document.getElementById("movie_backdrop").style.backgroundImage = "url(" + complete_backdrop_url + ")";
 
         $("#movie_title").text(Movie_Details.title);
+        // Director assigned in generate_credits function
         $("#movie_year").text(Movie_Details.year);
         $("#movie_runtime").text(Movie_Details.runtime + " min")
 
         // Movie poster
-        var complete_poster_url = baseimg + Movie_Details.poster_path;
-        document.getElementById("movie_poster").src = complete_poster_url;
+        if (Movie_Details.poster_path) {
+          var complete_poster_url = baseimg_original + Movie_Details.poster_path;
+          document.getElementById("movie_poster").src = complete_poster_url;
+        } else {
+          document.getElementById("movie_poster").src = "images/poster_unavailable.jpg";
+        }
+
 
         // Movie Trailer
         //document.getElementById("trailer_btn").onclick = function() {window.open(Movie_Details.youtube_url, "_blank");};
@@ -129,3 +194,16 @@ $(document).ready(function(){
         })
     }
 });
+
+// Open new tab to IMDb profile
+function imdb_segue(id) {
+
+    theMovieDb.people.getExternalIds({"id": id}, function(data) {
+      resultJSON = JSON.parse(data);
+      var imdb_url = "https://www.imdb.com/name/" + resultJSON.imdb_id + "/?ref_=tt_cl_t1"
+      window.open(imdb_url);
+    },
+    function(data) {
+      console.log("Error callback: " + data);
+    })
+};

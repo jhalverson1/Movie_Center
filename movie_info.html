@@ -7,27 +7,23 @@
   <title>Movie Center Website</title>
 
 
-  <!-- Latest compiled and minified CSS -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <!-- jQuery library -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
-  <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- My CSS -->
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/movie_info.css">
 
 </head>
 
 <body>
-
   <div class="behind-container" id="movie_backdrop">
+
     <div class="container-fluid custom_container">
 
       <div class="row">
-        <div class="col-lg-3" id="column_one">
+        <div class="col-lg-2" id="column_one">
           <img class="rounded float-left" id="movie_poster" src="" alt="movie_poster">
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-outline-dark video-btn" data-toggle="modal" data-target="#trailer_modal" id="trailer_btn">Play Trailer</button>
@@ -48,19 +44,26 @@
               </div>
             </div>
           </div>
+
+          <!-- IMDb Plugin -->
+          <div>
+            <span class="imdbRatingPlugin" data-user="ur91725908" data-title="" data-style="p4" id="imdb_plugin">
+              <a href="#" id="link_to_imdb">
+                <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png" alt=" IMDb Score" id="imdb_logo"/>
+              </a>
+            </span>
+          </div>
+
         </div>
         <div class="col-lg-5" id="column_two">
           <h1 id="movie_title"></h1>
+          <div href="#" id="movie_director">Directed by </div>
           <h4 id="movie_year"></h4>
           <p id="movie_runtime"></p>
           <div id="movie_overview"></div>
         </div>
-        <div class="col-lg-4" id="column_three">
-          <span class="imdbRatingPlugin" data-user="ur91725908" data-title="" data-style="p4" id="imdb_plugin">
-            <a href="#" id="link_to_imdb">
-              <img src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_46x22.png" alt=" IMDb Score" id="imdb_logo"/>
-            </a>
-          </span>
+        <div class="col-lg-5" id="column_three">
+          <div id="cast_list_div"></div>
         </div>
       </div>
 
