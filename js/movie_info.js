@@ -97,28 +97,28 @@ $(document).ready(function(){
               cast_image_path = baseimg_w185 + member.profile_path;
             }
 
-            //console.log(member);
+            // Generate list of cast members
             $("#newCastList").append(
-                "<a class='imdb_li_btn' id ='" + member.id + "' onClick='imdb_segue(this.id)'>"
-                + "<div class='cast_member list-group-item'>"
-                + "<div class='container-fluid'>"
-                + "<div class='row' id='cast_row'>"
-
-                // Cast member image
-                + "<div class='column-sm-1'>"
-                + "<img class='rounded cast_member_image' src='" + cast_image_path + "' alt='cast member image'>"
-                + "</div>"
-
-                // Cast member name and character
-                + "<div class='column-sm-11 text-dark'>"
-                + "<p class='cast_member_name'>" + member.name + "</p>"
-                + "<p class='cast_member_character'>" + member.character + "</p>"
-                + "</div>"
-
-                + "</div>"
-                + "</div>"
-                + "</div>"
-                + "</a>"
+                "<a class='imdb_li_btn' id ='" + member.id + "' onClick='imdb_segue(this.id)'>      \
+                  <div class='cast_member list-group-item'>                                         \
+                    <div class='container-fluid'>                                                   \
+                      <div class='row' id='cast_row'>                                               \
+                                                                                                    \
+                        <!-- Cast member image -->                                                  \
+                        <div class='column-sm-1'>                                                   \
+                          <img class='rounded cast_member_image' src='" + cast_image_path + "' alt='cast member image'> \
+                        </div>                                                                      \
+                                                                                                    \
+                        <!-- Cast member name and character -->                                     \
+                        <div class='column-sm-11 text-dark align-self-center name_character_div'>                      \
+                          <p class='cast_member_name'>" + member.name + "</p>                       \
+                          <p class='cast_member_character'>" + member.character + "</p>             \
+                        </div>                                                                      \
+                                                                                                    \
+                      </div>                                                                        \
+                    </div>                                                                          \
+                  </div>                                                                            \
+                </a>"
             );
         });
     }

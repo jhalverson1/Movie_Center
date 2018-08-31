@@ -37,32 +37,27 @@ $(document).ready(function(){
 
             // Create unordered list items
             $("#newResultsList").append(
-                        // Clickable link using anchor element
-                        "<a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='"
-                        + current_id + "' onClick='segue_click(this.id)'>"
-                        + "<div class='container-fluid'>"
-                        + "<div class='row'>"
-
-                        // Movie Poster
-                        + "<div class='col-sm-1 home_li_pic'>"
-                        + "<img class='poster_thumbnail' src='" + full_image_url + "' alt='movie poster'>"
-                        + "</div>"
-
-                        // title and release year
-                        + "<div class='col-sm-5'>"
-                        + "<h3 class='title_header'>" + resultJSON.results[i].title + "</h3>"
-                        + "<p class='year_text'>" + resultJSON.results[i].release_date.substring(0, 4) + "</p>"
-                        + "</div>"
-
-                        // release year
-                        + "<div class='col-sm-6'>"
-                        + "</div>"
-
-                        + "</div>"
-                        + "</div>"
-                        + "</a>"
+                        "<a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
+                        <div class='container-fluid'> \
+                          <div class='row'> \
+                          \
+                            <!-- Movie Poster --> \
+                            <div class='col-sm-1 home_li_pic'> \
+                              <img class='poster_thumbnail' src='" + full_image_url + "' alt='movie poster'> \
+                            </div> \
+                            \
+                            <!-- title and release year --> \
+                            <div class='col-sm-5'> \
+                              <h3 class='title_header'>" + resultJSON.results[i].title + "</h3> \
+                              <p class='year_text'>" + resultJSON.results[i].release_date.substring(0, 4) + "</p> \
+                            </div> \
+                            \
+                            <!-- Unused Section --> \
+                            <div class='col-sm-6'> \
+                            </div> \
+                          </div> \
+                        </div>"
                       );
-
         }
     };
 
