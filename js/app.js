@@ -77,7 +77,6 @@ $(document).ready(function(){
         console.log("Error callback: " + data);
     };
 
-
 });
 
 function segue_click(clicked_id) {

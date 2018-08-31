@@ -19,13 +19,13 @@
   text-decoration: none;
   display: inline-block;
   padding: 16px 16px;
-  color: #efefef;
+  color: rgb(255,255,255,.8);
   font-size: 30px;
+  transition: all .2s ease-in-out;
 }
 
 #link_home:hover {
-  background-color: #ddd;
-  color: black;
+  transform: scale(1.5);
 }
 
 
