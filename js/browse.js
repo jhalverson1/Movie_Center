@@ -6,13 +6,16 @@ $(document).ready(function() {
 
 
   // Number of pages as input
-  load_popular_movies(2);
+  load_movies(4, "now_playing");
+  load_movies(4, "popular");
+  load_movies(4, "top_rated");
 
 
   // Function is called when movies successfully loaded
   function successCB(data) {
       // Object created from json
       var resultJSON = JSON.parse(data);
+      console.log(resultJSON.results);
       load_carousel(resultJSON.results)
   };
 
@@ -24,40 +27,121 @@ $(document).ready(function() {
 
 
   // Netflix style carousel
-  function load_carousel(movies) {
+  function load_carousel(movies, category) {
 
-    // $('#hold_movies').append("<div class='list-group' id='popular_movies'></div>");
-    console.log(movies);
-    Object.keys(movies).forEach(function(index) {
-        var current_id = movies[index].id;
+    if (category == "now_playing")
+    {
+      Object.keys(movies).forEach(function(index) {
+          var current_id = movies[index].id;
 
-        // Cronstruct full image path
-        var full_path;
-        if (movies[index].poster_path) {
-          full_path = baseimg_w185 + movies[index].poster_path;
-        } else {
-          full_path = "images/poster_unavailable.jpg";
-        }
+          // Cronstruct full image path
+          var full_path;
+          if (movies[index].poster_path) {
+            full_path = baseimg_w185 + movies[index].poster_path;
+          } else {
+            full_path = "images/poster_unavailable.jpg";
+          }
 
-        $('#hold_movies').append(
-          "<div class='list-group-item'>      \
-              <a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
-              <img class='rounded item_img' src='" + full_path + "'>    \
-          <div>"
-        );
-    });
+          $('#now_playing_div').append(
+            "<div class='list-group-item'>      \
+                <a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
+                <img class='rounded item_img' src='" + full_path + "'>    \
+            <div>"
+          );
+      });
+    }
+    else if (category == "popular")
+    {
+      Object.keys(movies).forEach(function(index) {
+          var current_id = movies[index].id;
+
+          // Cronstruct full image path
+          var full_path;
+          if (movies[index].poster_path) {
+            full_path = baseimg_w185 + movies[index].poster_path;
+          } else {
+            full_path = "images/poster_unavailable.jpg";
+          }
+
+          $('#popular_div').append(
+            "<div class='list-group-item'>      \
+                <a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
+                <img class='rounded item_img' src='" + full_path + "'>    \
+            <div>"
+          );
+      });
+    }
+    else if (category == "top_rated")
+    {
+      Object.keys(movies).forEach(function(index) {
+          var current_id = movies[index].id;
+
+          // Cronstruct full image path
+          var full_path;
+          if (movies[index].poster_path) {
+            full_path = baseimg_w185 + movies[index].poster_path;
+          } else {
+            full_path = "images/poster_unavailable.jpg";
+          }
+
+          $('#top_rated_div').append(
+            "<div class='list-group-item'>      \
+                <a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
+                <img class='rounded item_img' src='" + full_path + "'>    \
+            <div>"
+          );
+      });
+    }
+
 
   }
 
-  // Load list of popular movies
-  function load_popular_movies(pages) {
+  // Load list of now_playing movies
+  function load_movies(pages, category) {
 
-    var current_page = 1;
+    if (category == "now_playing")
+    {
+      var current_page = 1;
 
-    while (current_page <= pages) {
-      tmdb.movies.getNowPlaying({"region": "US", "page": current_page}, successCB, errorCB)
+      while (current_page <= pages) {
+        tmdb.movies.getNowPlaying({"region": "US", "page": current_page}, function(data) {
+          // Object created from json
+          var resultJSON = JSON.parse(data);
+          load_carousel(resultJSON.results, category)
+        }, errorCB)
 
-      current_page++;
+        current_page++;
+      }
+    }
+    else if (category == "popular")
+    {
+
+      var current_page = 1;
+
+      while (current_page <= pages) {
+        tmdb.movies.getPopular({"region": "US", "page": current_page}, function(data) {
+          // Object created from json
+          var resultJSON = JSON.parse(data);
+          load_carousel(resultJSON.results, category)
+        }, errorCB)
+
+        current_page++;
+      }
+    }
+    else if (category == "top_rated")
+    {
+
+      var current_page = 1;
+
+      while (current_page <= pages) {
+        tmdb.movies.getTopRated({"region": "US", "page": current_page}, function(data) {
+          // Object created from json
+          var resultJSON = JSON.parse(data);
+          load_carousel(resultJSON.results, category)
+        }, errorCB)
+
+        current_page++;
+      }
     }
   }
 
