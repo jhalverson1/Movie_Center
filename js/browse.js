@@ -148,8 +148,11 @@ $(document).ready(function() {
 });
 
 function segue_click(clicked_id) {
-    console.log("segue");
+
     // save clicked movie id to local storage for later use
     localStorage.movie_id=clicked_id;
+
+    // save current url to local storage for later use
+    localStorage.previous_page=window.location.href;
 
 };

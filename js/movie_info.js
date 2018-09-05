@@ -6,6 +6,13 @@ $(document).ready(function(){
     var tmdb = theMovieDb;
     var resultJSON = {};
 
+
+    var full_previous_url = localStorage.previous_page.split("/");
+    var previous_page = full_previous_url[full_previous_url.length - 1];
+
+    console.log(previous_page);
+    document.getElementById("segue_btn").href = previous_page;
+
     // take the movie_id that was stored in the local storage
     var movie_id = localStorage.movie_id;
 
