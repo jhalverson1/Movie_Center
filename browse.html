@@ -6,20 +6,18 @@
 
   <title>Movie Center Website</title>
 
-  <!-- Latest compiled and minified CSS -->
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <!-- jQuery library -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
-  <!-- Latest compiled JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- My CSS -->
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/browse.css">
 </head>
 
 <body>
+
+
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar_custom">
@@ -40,29 +38,31 @@
   </div>
   </nav>
 
-  <div class="container-fluid">
+
+  <div class="container-fluid container_custom">
+
     <div class="row">
-        <div class="text-center col-lg-12">
-            <h1>Now Playing</h1>
-            <hr />
-            <div class="container">
 
-                <div class="row" id="movie_display_div">
-                    
-                </div>
+      <div class="col-md-12 col-lg-12">
+        <!-- Netflix style carousel -->
+        <div class="list-group list-group-horizontal" id='hold_movies'>
+      </div>
 
-            </div>
-
-        </div>
+      </div>
     </div>
+
   </div>
 
 
 
 
 
+
+
+  <!-- My Javascript -->
   <script type='text/javascript' src='js/config.js'></script>
   <script src="js/browse.js"></script>
   <script src="js/themoviedb.js"></script>
+
 </body>
 </html>

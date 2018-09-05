@@ -73,6 +73,11 @@
 .imdb_li_btn {
   text-decoration: none;
   cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.imdb_li_btn:hover {
+  transform: scale(1.02);
 }
 
 #cast_row {
