@@ -1,27 +1,31 @@
 body {
-  background-color: transparent;
+  background-color: rgb(237, 237, 237);
 }
 
 .navbar_custom {
   background-color: #b71c1c;
 }
 
+.container_custom {
+  padding-top: 10%;
+}
+
 .container_custom .custom_row {
-    width:100%;
-    height:auto;
-    overflow-x:auto;
-    padding: 10px 15px 10px 15px;
-    background-color: transparent;
+
 }
 
 .custom_row {
   padding-top: 30px;
-  background-color: rgb(237, 237, 237);
+  width:100%;
+  height:auto;
+  overflow-x:auto;
+  padding: 10px 15px 5px 15px;
 }
 
 .category_title {
   padding-left: 25px;
   vertical-align: bottom;
+  margin-bottom: 0;
 }
 
 .custom_list_group {
