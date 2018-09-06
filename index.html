@@ -58,7 +58,13 @@
 
           </div>
 
-          <a href="#" id="advanced_search_link">advanced search</a>
+
+          <button type="button" class="btn btn-light btn-sm float-right" data-toggle="button" aria-pressed="false" autocomplete="off" id="advanced_search_link">
+            Filters
+          </button>
+
+
+
           <div class="" id="advanced_search_div"  style="display: none;">
 
 
@@ -66,10 +72,10 @@
             <!-- Release Date Range -->
             <form>
               <div class="row">
-                <div class="col">
+                <div class="col-md-2 col-lg-2">
                   <!-- Genre Dropdown -->
                   <div class="dropdown" id="dropdown_div">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Genres
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -85,21 +91,25 @@
                   </div>
                 </div>
 
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="From Year" id="from_year_filter">
+                <div class="col-md-1 col-lg-1" id="release_year_label">
+                  <div type="text">Year: </div>
                 </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="To Year" id="to_year_filter">
+                <div class="col-md-1 col-lg-1" style="padding: 0;">
+                  <input type="text" class="form-control" placeholder="From" id="from_year_filter">
                 </div>
-                <div class="col">
+                <div class="col-md-1 col-lg-1" style="padding: 0;">
+                  <input type="text" class="form-control" placeholder="To" id="to_year_filter">
+                </div>
+
+                <div class="col-md-7 col-lg-7">
 
                 </div>
-                <div class="col">
 
-                </div>
               </div>
-              <div class="row">
+              <div class="row justify-content-end">
+
                 <div class="col" style="padding: 15px 15px 15px 15px;">
+                  <hr>
                   <!-- Submit Button -->
                   <button type="button" class="btn btn-outline-dark" id="submit_btn">Submit</button>
                 </div>
