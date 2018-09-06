@@ -119,27 +119,6 @@ $(document).ready(function() {
           );
       });
     }
-    else if (category == "documentary")
-    {
-      Object.keys(movies).forEach(function(index) {
-          var current_id = movies[index].id;
-
-          // Cronstruct full image path
-          var full_path;
-          if (movies[index].poster_path) {
-            full_path = baseimg_w185 + movies[index].poster_path;
-          } else {
-            full_path = "images/poster_unavailable.jpg";
-          }
-
-          $('#documentary_div').append(
-            "<div class='list-group-item'>      \
-                <a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
-                <img class='rounded item_img' src='" + full_path + "'>    \
-            <div>"
-          );
-      });
-    }
     else if (category == "horror")
     {
       Object.keys(movies).forEach(function(index) {
@@ -189,20 +168,6 @@ $(document).ready(function() {
         tmdb.discover.getMovies({"with_genres": "35", "page": current_page}, function(data) {
           var resultJSON = JSON.parse(data);
           load_carousel(resultJSON.results, "comedy")
-        }, errorCB);
-
-        current_page++;
-      }
-    }
-    else if (genre == "documentary")
-    {
-      var current_page = 1;
-
-      while (current_page <= pages) {
-        console.log(current_page);
-        tmdb.discover.getMovies({"with_genres": "99", "page": current_page}, function(data) {
-          var resultJSON = JSON.parse(data);
-          load_carousel(resultJSON.results, "documentary")
         }, errorCB);
 
         current_page++;
