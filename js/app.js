@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
     var api_key = config.TMDB_API;
     var baseimg = "https://image.tmdb.org/t/p/w185";
     var tmdb = theMovieDb;
@@ -72,16 +73,18 @@ $(document).ready(function(){
 
       // Assign Release Date To and from
       if (localStorage.from_year) {
-        console.log(localStorage.from_year);
         filters["primary_release_date.gte"] = localStorage.from_year;
       }
       if (localStorage.to_year) {
-        console.log(localStorage.to_year);
         filters["primary_release_date.lte"] = localStorage.to_year;
       }
 
+      var current_page = 1;
+
+      
       tmdb.discover.getMovies(filters, function(data) {
         var resultJSON = JSON.parse(data);
+        console.log(resultJSON);
         generate_list(resultJSON);
       },
       function(data) { console.log("Error callback: " + data); });
@@ -107,8 +110,10 @@ $(document).ready(function(){
       // Make filters visible
       var div_selector = document.getElementById('advanced_search_div');
       if (div_selector.style.display == "none") {
+        console.log("BLOCK");
         div_selector.style.display = "block";
       } else {
+        console.log("NONE");
         div_selector.style.display = "none";
       }
     });
@@ -116,6 +121,7 @@ $(document).ready(function(){
     // Genre Filters
     $('#drama_genre_option').click( function() {
       localStorage.genre_filter="18";
+      console.log("Drama");
       document.getElementById("dropdownMenuButton").innerText = "Drama";
     });
 
