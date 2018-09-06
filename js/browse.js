@@ -10,23 +10,11 @@ $(document).ready(function() {
   load_movies(4, "top_rated");
 
   load_genre(4, "drama");
+  load_genre(4, "comedy");
+  load_genre(4, "documentary");
+  load_genre(4, "horror");
 
-  function load_genre(pages, genre) {
-    if (genre == "drama")
-    {
-      var current_page = 1;
 
-      while (current_page <= pages) {
-        console.log(current_page);
-        tmdb.discover.getMovies({"with_genres": "18", "page": current_page}, function(data) {
-          var resultJSON = JSON.parse(data);
-          load_carousel(resultJSON.results, "drama")
-        }, errorCB);
-
-        current_page++;
-      }
-    }
-  }
 
 
   // Function is called when movies successfully loaded
@@ -111,7 +99,130 @@ $(document).ready(function() {
       });
     }
 
+    else if (category == "comedy")
+    {
+      Object.keys(movies).forEach(function(index) {
+          var current_id = movies[index].id;
 
+          // Cronstruct full image path
+          var full_path;
+          if (movies[index].poster_path) {
+            full_path = baseimg_w185 + movies[index].poster_path;
+          } else {
+            full_path = "images/poster_unavailable.jpg";
+          }
+
+          $('#comedy_div').append(
+            "<div class='list-group-item'>      \
+                <a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
+                <img class='rounded item_img' src='" + full_path + "'>    \
+            <div>"
+          );
+      });
+    }
+    else if (category == "documentary")
+    {
+      Object.keys(movies).forEach(function(index) {
+          var current_id = movies[index].id;
+
+          // Cronstruct full image path
+          var full_path;
+          if (movies[index].poster_path) {
+            full_path = baseimg_w185 + movies[index].poster_path;
+          } else {
+            full_path = "images/poster_unavailable.jpg";
+          }
+
+          $('#documentary_div').append(
+            "<div class='list-group-item'>      \
+                <a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
+                <img class='rounded item_img' src='" + full_path + "'>    \
+            <div>"
+          );
+      });
+    }
+    else if (category == "horror")
+    {
+      Object.keys(movies).forEach(function(index) {
+          var current_id = movies[index].id;
+
+          // Cronstruct full image path
+          var full_path;
+          if (movies[index].poster_path) {
+            full_path = baseimg_w185 + movies[index].poster_path;
+          } else {
+            full_path = "images/poster_unavailable.jpg";
+          }
+
+          $('#horror_div').append(
+            "<div class='list-group-item'>      \
+                <a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + current_id + "' onClick='segue_click(this.id)'> \
+                <img class='rounded item_img' src='" + full_path + "'>    \
+            <div>"
+          );
+      });
+    }
+
+
+  }
+
+  function load_genre(pages, genre) {
+    if (genre == "drama")
+    {
+      var current_page = 1;
+
+      while (current_page <= pages) {
+        console.log(current_page);
+        tmdb.discover.getMovies({"with_genres": "18", "page": current_page}, function(data) {
+          var resultJSON = JSON.parse(data);
+          load_carousel(resultJSON.results, "drama")
+        }, errorCB);
+
+        current_page++;
+      }
+    }
+    else if (genre == "comedy")
+    {
+      var current_page = 1;
+
+      while (current_page <= pages) {
+        console.log(current_page);
+        tmdb.discover.getMovies({"with_genres": "35", "page": current_page}, function(data) {
+          var resultJSON = JSON.parse(data);
+          load_carousel(resultJSON.results, "comedy")
+        }, errorCB);
+
+        current_page++;
+      }
+    }
+    else if (genre == "documentary")
+    {
+      var current_page = 1;
+
+      while (current_page <= pages) {
+        console.log(current_page);
+        tmdb.discover.getMovies({"with_genres": "99", "page": current_page}, function(data) {
+          var resultJSON = JSON.parse(data);
+          load_carousel(resultJSON.results, "documentary")
+        }, errorCB);
+
+        current_page++;
+      }
+    }
+    else if (genre == "horror")
+    {
+      var current_page = 1;
+
+      while (current_page <= pages) {
+        console.log(current_page);
+        tmdb.discover.getMovies({"with_genres": "27", "page": current_page}, function(data) {
+          var resultJSON = JSON.parse(data);
+          load_carousel(resultJSON.results, "horror")
+        }, errorCB);
+
+        current_page++;
+      }
+    }
   }
 
   // Load list of now_playing movies
