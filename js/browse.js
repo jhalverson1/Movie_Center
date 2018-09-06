@@ -98,7 +98,6 @@ $(document).ready(function() {
           );
       });
     }
-
     else if (category == "comedy")
     {
       Object.keys(movies).forEach(function(index) {

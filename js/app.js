@@ -61,6 +61,32 @@ $(document).ready(function(){
         }
     };
 
+    function generate_filtered_list() {
+
+      var filters = {"page": 1}
+
+      // Assign 'Genre' Argument
+      if (localStorage.genre_filter) {
+        filters["with_genres"] = localStorage.genre_filter;
+      }
+
+      // Assign Release Date To and from
+      if (localStorage.from_year) {
+        console.log(localStorage.from_year);
+        filters["primary_release_date.gte"] = localStorage.from_year;
+      }
+      if (localStorage.to_year) {
+        console.log(localStorage.to_year);
+        filters["primary_release_date.lte"] = localStorage.to_year;
+      }
+
+      tmdb.discover.getMovies(filters, function(data) {
+        var resultJSON = JSON.parse(data);
+        generate_list(resultJSON);
+      },
+      function(data) { console.log("Error callback: " + data); });
+    }
+
     // Function is called when the search is successful
     function search_successCB(data) {
 
@@ -76,6 +102,82 @@ $(document).ready(function(){
     function search_errorCB(data) {
         console.log("Error callback: " + data);
     };
+
+    $('#advanced_search_link').click(function() {
+      // Make filters visible
+      var div_selector = document.getElementById('advanced_search_div');
+      if (div_selector.style.display == "none") {
+        div_selector.style.display = "block";
+      } else {
+        div_selector.style.display = "none";
+      }
+    });
+
+    // Genre Filters
+    $('#drama_genre_option').click( function() {
+      localStorage.genre_filter="18";
+      document.getElementById("dropdownMenuButton").innerText = "Drama";
+    });
+
+    $('#comedy_genre_option').click( function() {
+      localStorage.genre_filter="35";
+      document.getElementById("dropdownMenuButton").innerText = "Comedy";
+    });
+
+    $('#horror_genre_option').click( function() {
+      localStorage.genre_filter="27";
+      document.getElementById("dropdownMenuButton").innerText = "Horror";
+    });
+
+    $('#documentary_genre_option').click( function() {
+      localStorage.genre_filter="99";
+      document.getElementById("dropdownMenuButton").innerText = "Documentary";
+    });
+
+    $('#scifi_genre_option').click( function() {
+      localStorage.genre_filter="878";
+      document.getElementById("dropdownMenuButton").innerText = "SciFi";
+    });
+
+    $('#thriller_genre_option').click( function() {
+      localStorage.genre_filter="53";
+      document.getElementById("dropdownMenuButton").innerText = "Thriller";
+    });
+
+    $('#action_genre_option').click( function() {
+      localStorage.genre_filter="28";
+      document.getElementById("dropdownMenuButton").innerText = "Action";
+    });
+
+    $('#none_genre_option').click( function() {
+      localStorage.genre_filter=undefined;
+      document.getElementById("dropdownMenuButton").innerText = "Genre"
+    })
+
+    // Submit button
+    $('#submit_btn').click( function() {
+
+      // Collect Release Year Range
+      if ($('#from_year_filter').val()) {
+        var from_year = $('#from_year_filter').val();
+        localStorage.from_year = from_year;
+      } else {
+        localStorage.from_year = "";
+      }
+
+      if ($('#to_year_filter').val()) {
+        var to_year = $('#to_year_filter').val();
+        localStorage.to_year = to_year;
+      } else {
+        localStorage.to_year = "";
+      }
+
+      generate_filtered_list();
+    });
+
+
+
+
 
 });
 

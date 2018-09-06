@@ -6,6 +6,9 @@
 
   <title>Movie Center Website</title>
 
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -52,7 +55,61 @@
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button" id="movie_search_btn">Search</button>
             </div>
+
           </div>
+
+          <a href="#" id="advanced_search_link">advanced search</a>
+          <div class="" id="advanced_search_div"  style="display: none;">
+
+
+
+            <!-- Release Date Range -->
+            <form>
+              <div class="row">
+                <div class="col">
+                  <!-- Genre Dropdown -->
+                  <div class="dropdown" id="dropdown_div">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Genres
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <button class="dropdown-item" id="drama_genre_option">Drama</button>
+                      <button class="dropdown-item" id="comedy_genre_option">Comedy</button>
+                      <button class="dropdown-item" id="horror_genre_option">Horror</button>
+                      <button class="dropdown-item" id="documentary_genre_option">Documentary</button>
+                      <button class="dropdown-item" id="scifi_genre_option">Science Fiction</button>
+                      <button class="dropdown-item" id="thriller_genre_option">Thriller</button>
+                      <button class="dropdown-item" id="action_genre_option">Action</button>
+                      <button class="dropdown-item" id="none_genre_option">none</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="From Year" id="from_year_filter">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="To Year" id="to_year_filter">
+                </div>
+                <div class="col">
+
+                </div>
+                <div class="col">
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col" style="padding: 15px 15px 15px 15px;">
+                  <!-- Submit Button -->
+                  <button type="button" class="btn btn-outline-dark" id="submit_btn">Submit</button>
+                </div>
+              </div>
+            </form>
+
+
+
+          </div>
+
 
           <!-- Search Results -->
           <div id="movie_list_div"></div>
