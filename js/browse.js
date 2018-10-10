@@ -5,6 +5,7 @@ $(document).ready(function() {
   var tmdb = theMovieDb;
 
 
+
   // Number of pages as input
   load_movies(4, "popular");
   load_movies(4, "top_rated");
@@ -13,9 +14,6 @@ $(document).ready(function() {
   load_genre(4, "comedy");
   load_genre(4, "documentary");
   load_genre(4, "horror");
-
-
-
 
   // Function is called when movies successfully loaded
   function successCB(data) {

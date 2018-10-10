@@ -5,6 +5,11 @@ $(document).ready(function(){
     var baseimg = "https://image.tmdb.org/t/p/w185";
     var tmdb = theMovieDb;
     var resultJSON = {};
+    var database = firebase.database();
+
+    // firebase.database().ref("search_count").set({
+    //   "loaded": 0
+    // });
 
     // Allows user to hit enter in text box to submit search
    document.getElementById('movie_search_text').onkeypress=function(e){
@@ -81,7 +86,7 @@ $(document).ready(function(){
 
       var current_page = 1;
 
-      
+
       tmdb.discover.getMovies(filters, function(data) {
         var resultJSON = JSON.parse(data);
         console.log(resultJSON);

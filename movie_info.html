@@ -9,6 +9,32 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+  <!-- Firebase Snippet -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script> -->
+
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-storage.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-functions.js"></script> -->
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAHpWbhz9TCf0LoihM_XZnalF1Li4yv2vg",
+      authDomain: "movie-center-49ab8.firebaseapp.com",
+      databaseURL: "https://movie-center-49ab8.firebaseio.com",
+      projectId: "movie-center-49ab8",
+      storageBucket: "movie-center-49ab8.appspot.com",
+      messagingSenderId: "714685487866"
+    };
+    firebase.initializeApp(config);
+  </script>
+
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>

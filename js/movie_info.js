@@ -5,12 +5,12 @@ $(document).ready(function(){
     var baseimg_original = "https://image.tmdb.org/t/p/original";
     var tmdb = theMovieDb;
     var resultJSON = {};
+    var database = firebase.database();
 
 
     var full_previous_url = localStorage.previous_page.split("/");
     var previous_page = full_previous_url[full_previous_url.length - 1];
 
-    console.log(previous_page);
     document.getElementById("segue_btn").href = previous_page;
 
     // take the movie_id that was stored in the local storage
@@ -28,6 +28,7 @@ $(document).ready(function(){
       youtube_url: "youtube.com",
       imdb_id: "tt"
     };
+
 
     // Create "movie object"
     var movie = tmdb.movies.getById({"id":movie_id }, id_search_successCB, errorCB)
@@ -64,7 +65,6 @@ $(document).ready(function(){
     };
 
     function generate_details(resultJSON){
-        console.log(resultJSON);
 
         // Set movie variables
         Movie_Details.title = resultJSON.original_title;
@@ -77,6 +77,9 @@ $(document).ready(function(){
 
         // Load movie details onto the page
         load_page_details();
+
+        // Update search count in firebase
+        fb_update_sc(movie_id)
     }
 
     function generate_credits(credits) {
@@ -96,7 +99,6 @@ $(document).ready(function(){
         // Clear div, then load div with new search results
         $('#cast_list_div').empty();
         $('#cast_list_div').append("<div class='list-group' id='newCastList'><h3><u>Cast</u></h3></div>");
-        console.log(credits);
         credits.cast.forEach(function(member) {
             // Create img url
             var cast_image_path = "images/poster_unavailable.jpg";
@@ -183,7 +185,6 @@ $(document).ready(function(){
 
         // Gets the video src from the data-src on each button
         var $videoSrc = url
-        console.log($videoSrc);
 
 
         // when the modal is opened autoplay it
@@ -200,6 +201,36 @@ $(document).ready(function(){
             $("#video").attr('src',$videoSrc);
         })
     }
+
+    // Update search count on firebase
+    function fb_update_sc(movie_id) {
+
+        var ref = database.ref("search_count/" + movie_id);
+        var ref_count = database.ref("search_count/" + movie_id + "/count");
+
+        ref.transaction(function(currentData) {
+          if (currentData === null) {
+            return { title: Movie_Details.title, count: 1 };
+          } else {
+            // Entry already exists, increment search count by one
+            console.log('Entry already exists');
+            currentData.count++;
+            return currentData; // Abort transaction
+          }
+        }, function(error, committed, snapshot) {
+          if (error) {
+            console.log('Transaction failed abnormally!', error);
+          } else if (!committed) {
+            console.log('We aborted the transaction (because entry already exists).');
+          } else {
+            console.log('Entry added!');
+          }
+          console.log("Entry's data: ", snapshot.val().count);
+        });
+
+
+    }
+
 });
 
 // Open new tab to IMDb profile
