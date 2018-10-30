@@ -2,7 +2,7 @@
 html, body {
   margin: 0;
   height: 100%;
-  background-color: #7f0000;
+  background-color: #424242;
 }
 
 .navbar_custom {
@@ -10,7 +10,7 @@ html, body {
 }
 
 #website_header {
-  color: #f05545;
+  color: #b71c1c;
   text-align: center;
   vertical-align: middle;
   padding-top: 7%;
