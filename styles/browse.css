@@ -14,6 +14,11 @@ body {
   padding-top: 10px;
 }
 
+.popular_searches_list {
+  background-color: rgba(213,213,213,0.7);
+  border-radius: 5px;
+}
+
 .left_scroll_arrow {
   position:absolute;
   top:0;

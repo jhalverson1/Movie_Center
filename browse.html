@@ -6,6 +6,24 @@
 
   <title>Movie Center Website</title>
 
+  <!-- Firebase Snippet -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase-storage.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAHpWbhz9TCf0LoihM_XZnalF1Li4yv2vg",
+      authDomain: "movie-center-49ab8.firebaseapp.com",
+      databaseURL: "https://movie-center-49ab8.firebaseio.com",
+      projectId: "movie-center-49ab8",
+      storageBucket: "movie-center-49ab8.appspot.com",
+      messagingSenderId: "714685487866"
+    };
+    firebase.initializeApp(config);
+  </script>
+
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -40,8 +58,22 @@
 
 
   <div class="container-fluid container_custom">
+
+    <!-- Page Title -->
     <h1 id="page_title">Browse</h1>
 
+    <!-- Most Popular Searches -->
+    <!-- <div class="row">
+      <div class="col-lg-4 popular_searches_list">
+        <h4>Top 10 Most Popular Searches</h4>
+      </div>
+
+      <div class="col-lg-8">
+
+      </div>
+    </div> -->
+
+    <!-- Lists of Movies based on category -->
     <div class="row custom_row">
         <h4 class="category_title">Popular</h4>
         <div class="list-group list-group-horizontal custom_list_group" id='popular_div'></div>

@@ -3,8 +3,10 @@ $(document).ready(function() {
   var baseimg_w185 = "https://image.tmdb.org/t/p/w185";
   var baseimg_original = "https://image.tmdb.org/t/p/original";
   var tmdb = theMovieDb;
+  var database = firebase.database();
 
-
+  // Load the most searched List
+  most_searched();
 
   // Number of pages as input
   load_movies(4, "popular");
@@ -19,7 +21,6 @@ $(document).ready(function() {
   function successCB(data) {
       // Object created from json
       var resultJSON = JSON.parse(data);
-      console.log(resultJSON.results);
       load_carousel(resultJSON.results)
   };
 
@@ -29,6 +30,17 @@ $(document).ready(function() {
       console.log("Error callback: " + data);
   };
 
+  // Function used to load top 10 most searched movies of all time
+  function most_searched() {
+    var ref = database.ref('search_count');
+    var movie_list = [];
+
+
+    ref.orderByChild("count").limitToLast(10).on("child_added", function(snapshot) {
+      console.log(snapshot.val());
+    });
+
+  }
 
   // Netflix style carousel
   function load_carousel(movies, category) {
@@ -148,7 +160,6 @@ $(document).ready(function() {
       var current_page = 1;
 
       while (current_page <= pages) {
-        console.log(current_page);
         tmdb.discover.getMovies({"with_genres": "18", "page": current_page}, function(data) {
           var resultJSON = JSON.parse(data);
           load_carousel(resultJSON.results, "drama")
@@ -162,7 +173,6 @@ $(document).ready(function() {
       var current_page = 1;
 
       while (current_page <= pages) {
-        console.log(current_page);
         tmdb.discover.getMovies({"with_genres": "35", "page": current_page}, function(data) {
           var resultJSON = JSON.parse(data);
           load_carousel(resultJSON.results, "comedy")
@@ -176,7 +186,6 @@ $(document).ready(function() {
       var current_page = 1;
 
       while (current_page <= pages) {
-        console.log(current_page);
         tmdb.discover.getMovies({"with_genres": "27", "page": current_page}, function(data) {
           var resultJSON = JSON.parse(data);
           load_carousel(resultJSON.results, "horror")
