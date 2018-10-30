@@ -37,9 +37,11 @@ $(document).ready(function() {
     ref.orderByChild("count").limitToLast(10).on("child_added", function(snapshot) {
       // console.log(snapshot.val().title, snapshot.val().count);
       $("#popular_searches_list").prepend(
-        "<div class='search_list_item'>                \
-          <div class='search_li_title'>" + snapshot.val().title + "<div>          \
-          <div class='search_li_count'>" + snapshot.val().count + "<div>   \
+        "<div class='container-fluid search_list_item'>                \
+          <div class'row'>    \
+            <div class='col-sm-9 search_li_title'>" + snapshot.val().title + "</div>          \
+            <div class='col-sm-3 search_li_count'>" + snapshot.val().count + "</div>   \
+          </div>        \
         </div>"
       );
 

@@ -17,10 +17,15 @@ body {
 .popular_searches_container {
   background-color: rgba(213,213,213,0.7);
   border-radius: 5px;
+  margin-left: 5%;
 }
 
-.search_list_item {
+.search_li_title {
+  float: left;
+}
 
+.search_li_count {
+  float: right;
 }
 
 .left_scroll_arrow {
