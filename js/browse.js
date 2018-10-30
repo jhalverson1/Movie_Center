@@ -33,11 +33,16 @@ $(document).ready(function() {
   // Function used to load top 10 most searched movies of all time
   function most_searched() {
     var ref = database.ref('search_count');
-    var movie_list = [];
-
 
     ref.orderByChild("count").limitToLast(10).on("child_added", function(snapshot) {
-      console.log(snapshot.val());
+      // console.log(snapshot.val().title, snapshot.val().count);
+      $("#popular_searches_list").prepend(
+        "<div class='search_list_item'>                \
+          <div class='search_li_title'>" + snapshot.val().title + "<div>          \
+          <div class='search_li_count'>" + snapshot.val().count + "<div>   \
+        </div>"
+      );
+
     });
 
   }
