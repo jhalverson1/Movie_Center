@@ -35,9 +35,14 @@ $(document).ready(function() {
     var ref = database.ref('search_count');
 
     ref.orderByChild("count").limitToLast(10).on("child_added", function(snapshot) {
-      // console.log(snapshot.val().title, snapshot.val().count);
+
+      var movie_key = snapshot.key;
+
+
+
       $("#popular_searches_list").prepend(
-        "<div class='container-fluid search_list_item'>                \
+        "<a href='movie_info.html' class='list-group-item list-group-item-action search_result_item' id ='" + movie_key + "' onClick='segue_click(this.id)'> \
+        <div class='container-fluid search_list_item'>                \
           <div class'row'>    \
             <div class='col-sm-9 search_li_title'>" + snapshot.val().title + "</div>          \
             <div class='col-sm-3 search_li_count'>" + snapshot.val().count + "</div>   \
