@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 
-    var api_key = config.TMDB_API;
+    var api_key = "3cc9e662a8461532d3d5e5d722ef582b"//config.TMDB_API;
     var baseimg = "https://image.tmdb.org/t/p/w185";
     var tmdb = theMovieDb;
     var resultJSON = {};
